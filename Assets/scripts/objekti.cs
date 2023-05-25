@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class objekti : MonoBehaviour {
 
-	public GameObject atkritumi;
+    public Canvas Canvas;
+
+
+    public GameObject atkritumi;
 	public GameObject atraPalidziba;
 	public GameObject autobuss;
 

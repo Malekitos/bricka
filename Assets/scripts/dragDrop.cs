@@ -20,7 +20,7 @@ public class dragDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        velkObjRectTrans.anchoredPosition = eventData.delta / objektuSkripts.canvas.scaleFactor;
+        velkObjRectTrans.anchoredPosition += eventData.delta / objektuSkripts.canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
