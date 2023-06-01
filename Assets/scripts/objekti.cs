@@ -14,7 +14,7 @@ public class objekti : MonoBehaviour {
     public GameObject cements;
     public GameObject e46;
     public GameObject e61;
-    public GameObject eskavarots;
+    public GameObject eskavators;
     public GameObject policija;
     public GameObject traktors;
     public GameObject traktors5;
@@ -36,9 +36,9 @@ public class objekti : MonoBehaviour {
     [HideInInspector]
     public Vector2 e61Kord;
     [HideInInspector]
-    public Vector2 eskavarotsKord;
+    public Vector2 eskavatorsKord;
     [HideInInspector]
-    public Vector2 policijakord;
+    public Vector2 policijaKord;
     [HideInInspector]
     public Vector2 traktorsKord;
     [HideInInspector]
@@ -66,8 +66,8 @@ public class objekti : MonoBehaviour {
         e46Kord = e46.GetComponent<RectTransform>().localPosition;
 
         e61Kord = e61.GetComponent<RectTransform>().localPosition;
-        eskavarotsKord = eskavarots.GetComponent<RectTransform>().localPosition;
-        policijakord = policija.GetComponent<RectTransform>().localPosition;
+        eskavatorsKord = eskavators.GetComponent<RectTransform>().localPosition;
+        policijaKord = policija.GetComponent<RectTransform>().localPosition;
 
         traktorsKord = traktors.GetComponent<RectTransform>().localPosition;
         traktors5Kord = traktors5.GetComponent<RectTransform>().localPosition;

@@ -13,11 +13,11 @@ public class objektuParvietosana : MonoBehaviour {
 		{
 			if(Input.GetKey(KeyCode.Z))
 			{
-				objektuSkripts.pedejaisVilktais.GetComponent<RectTransform>().transform.Rotate(0,0, Time.deltaTime * 15f);
+				objektuSkripts.pedejaisVilktais.GetComponent<RectTransform>().transform.Rotate(0,0, Time.deltaTime * 20f);
 			}
             if (Input.GetKey(KeyCode.X))
             {
-                objektuSkripts.pedejaisVilktais.GetComponent<RectTransform>().transform.Rotate(0, 0, -Time.deltaTime * 15f);
+                objektuSkripts.pedejaisVilktais.GetComponent<RectTransform>().transform.Rotate(0, 0, -Time.deltaTime * 20f);
             }
             if (Input.GetKey(KeyCode.UpArrow))
             {
