@@ -62,10 +62,10 @@ public class objekti : MonoBehaviour {
     public GameObject zvaigznes; // sprite ar zvaigznem
     public GameObject panel; // panel uz kuras paradas rezultats
     public GameObject pogaReset; // poga reset
-    public GameObject taimer;
+    public GameObject taimer;  // taimers
     public int zvaigznesSkaits = 1; // cik zvaigznes vajadzes attelot
 
-    public float mil;
+    public float mil; // izveidojam mainigos preks taimera
     public int sec;
     public int min;
     public int h;
@@ -74,8 +74,8 @@ public class objekti : MonoBehaviour {
     private void FixedUpdate() {
 
 
-        if (PareizuMasinuSkaits<12) {
-            mil += 0.02f;
+        if (PareizuMasinuSkaits<12) { // pieskaitam laiku ja pareizas ieliktas masinas mazaks par 12
+            mil += 0.02f; 
         }
         
         if (mil >= 1)
@@ -95,14 +95,14 @@ public class objekti : MonoBehaviour {
             h++;
             min = 0;
         }
-        text.text = $"{h}: {min} : {sec}";
+        text.text = $"{h}: {min} : {sec}"; // izvada laiku teksta lauka
 
-        switch (min) {
+        switch (min) {  // pieskaita zvaigznes attiecigi laikam 
             case 0:zvaigznesSkaits = 2;break;
             case 1: zvaigznesSkaits = 1; break;
             case 2: zvaigznesSkaits = 0; break;
         }
-        if (h > 0) {
+        if (h > 0) { // ja laiks ir vairak par 60 minutem, tad iedo tikai vienu zvaigzni
             zvaigznesSkaits = 0;
         }
     }
@@ -128,7 +128,7 @@ public class objekti : MonoBehaviour {
         traktors5Kord = traktors5.GetComponent<RectTransform>().localPosition;
         ugunsDzesejsKord = ugunsDzesejs.GetComponent<RectTransform>().localPosition;
 
-        zvaigznes.SetActive(false);
+        zvaigznes.SetActive(false); // sakuma paslepam nevajadzigos objektus preks rezultatiem 
         pogaReset.SetActive(false);
         panel.SetActive(false);
         taimer.SetActive(false);
@@ -144,13 +144,13 @@ public class objekti : MonoBehaviour {
     public void rezultats() {
         if (PareizuMasinuSkaits >= 12)
         { // ja visas 12 masinas pareizi novietotas, tad paradam laiku, zvaigznes, pogu RESET un panel(skaistumam)
-            zvaigznes.SetActive(true); // paradas rezultati
+            zvaigznes.SetActive(true); // paradas nosleptas objektus (rezultati)
             pogaReset.SetActive(true);
             panel.SetActive(true);
             taimer.SetActive(true);
 
            
-            switch (zvaigznesSkaits)
+            switch (zvaigznesSkaits) // attelo zvaigznu skaitu rezultata
             {
                 case 0:
                     zvaigznes.GetComponent<Image>().sprite = atteluMasivs[0]; break;
@@ -167,7 +167,7 @@ public class objekti : MonoBehaviour {
         }
     }
 
-    public void pogaResetDarbiba() {
+    public void pogaResetDarbiba() { // pogas Reset darbiba
         SceneManager.LoadScene("Sakums", LoadSceneMode.Single);
     }
 
