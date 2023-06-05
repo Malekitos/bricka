@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class objekti : MonoBehaviour {
 
@@ -55,6 +57,14 @@ public class objekti : MonoBehaviour {
 	public bool vaiIstajaVieta = false;
 	public GameObject pedejaisVilktais = null;
 
+    public int PareizuMasinuSkaits; // mainigais kurais skait cik masinas ir pareizi novietotas
+    public int laiks; // laiks
+    public Sprite[] atteluMasivs; // viena spraita bus tris atteli, 1,2,3 zvaigznes
+    public GameObject zvaigznes; // sprite ar zvaigznem
+    public GameObject panel; // panel uz kuras paradas rezultats
+    public GameObject pogaReset; // poga reset
+    public int zvaigznesSkaits = 1; // cik zvaigznes vajadzes attelot
+
     // Use this for initialization
     void Start () {
 		atkrKord = atkritumi.GetComponent<RectTransform>().localPosition;
@@ -72,10 +82,48 @@ public class objekti : MonoBehaviour {
         traktorsKord = traktors.GetComponent<RectTransform>().localPosition;
         traktors5Kord = traktors5.GetComponent<RectTransform>().localPosition;
         ugunsDzesejsKord = ugunsDzesejs.GetComponent<RectTransform>().localPosition;
+
+        zvaigznes.SetActive(false);
+        pogaReset.SetActive(false);
+        panel.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
+
+   
+
+    public void rezultats() {
+        if (PareizuMasinuSkaits >= 12)
+        { // ja visas 12 masinas pareizi novietotas, tad paradam laiku, zvaigznes, pogu RESET un panel(skaistumam)
+            zvaigznes.SetActive(true);
+            pogaReset.SetActive(true);
+            panel.SetActive(true);
+            //laiks.SetActive(true);
+
+            PareizuMasinuSkaits = 0;
+
+            /*
+            switch (zvaigznesSkaits)
+            {
+                case 1:
+                    zvaigznes.GetComponent<Image>().sprite = atteluMasivs[0]; break;
+
+                case 2:
+                    zvaigznes.GetComponent<Image>().sprite = atteluMasivs[1]; break;
+
+                case 3:
+                    zvaigznes.GetComponent<Image>().sprite = atteluMasivs[2]; break;
+
+            }
+            */
+
+        }
+    }
+
+    public void pogaResetDarbiba() {
+        SceneManager.LoadScene("Sakums", LoadSceneMode.Single);
+    }
 }

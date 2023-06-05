@@ -10,9 +10,8 @@ public class nomesanasVieta : MonoBehaviour, IDropHandler {
 	private float xIzmeruStarp, yIzmeruStarp;
 	public objekti objectuScripts;
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -44,16 +43,21 @@ public class nomesanasVieta : MonoBehaviour, IDropHandler {
 				if ((rotacijasStarpiba <= 15 || (rotacijasStarpiba >= 345 && rotacijasStarpiba <= 360)) && (xIzmeruStarp <= 0.2 && yIzmeruStarp <= 0.2))
 				{
 
-					objectuScripts.vaiIstajaVieta = true;
+                    objectuScripts.vaiIstajaVieta = true;
 
 					eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
                     eventData.pointerDrag.GetComponent<RectTransform>().localRotation = GetComponent<RectTransform>().localRotation;
                     eventData.pointerDrag.GetComponent<RectTransform>().localScale = GetComponent<RectTransform>().localScale;
 
-					switch (eventData.pointerDrag.tag) {
+                    objectuScripts.PareizuMasinuSkaits++; // pieskajtam , mainigajam vienu vienibu pec pareizas novilktas masinas
+                    objectuScripts.rezultats(); // izsaukam metodi, kura parbaud vai ir 12 masinas noliktas pareizi
+
+
+
+                    switch (eventData.pointerDrag.tag) {
 						case "atkritumi":
 							objectuScripts.audioAvots.PlayOneShot(objectuScripts.skanasKoAtskanot[1]);
-							break;
+                            break;
                         case "medecina":
                             objectuScripts.audioAvots.PlayOneShot(objectuScripts.skanasKoAtskanot[2]);
                             break;
@@ -93,7 +97,7 @@ public class nomesanasVieta : MonoBehaviour, IDropHandler {
 			else
 			{
 				objectuScripts.vaiIstajaVieta = false;
-				objectuScripts.audioAvots.PlayOneShot(objectuScripts.skanasKoAtskanot[0]);
+                objectuScripts.audioAvots.PlayOneShot(objectuScripts.skanasKoAtskanot[0]);
                 switch (eventData.pointerDrag.tag)
                 {
                     case "atkritumi":
@@ -134,6 +138,7 @@ public class nomesanasVieta : MonoBehaviour, IDropHandler {
                         break;
                 }
             }
+            
         }
     }
 }
