@@ -58,7 +58,6 @@ public class objekti : MonoBehaviour {
 	public GameObject pedejaisVilktais = null;
 
     public int PareizuMasinuSkaits; // mainigais kurais skait cik masinas ir pareizi novietotas
-    public int laiks; // laiks
     public Sprite[] atteluMasivs; // viena spraita bus tris atteli, 1,2,3 zvaigznes
     public GameObject zvaigznes; // sprite ar zvaigznem
     public GameObject panel; // panel uz kuras paradas rezultats
@@ -73,16 +72,22 @@ public class objekti : MonoBehaviour {
     public Text text;
 
     private void FixedUpdate() {
-        while (PareizuMasinuSkaits!=12) {
+
+
+        if (PareizuMasinuSkaits<12) {
             mil += 0.02f;
         }
-        if (mil >= 1) {
+        
+        if (mil >= 1)
+        {
             sec++;
             mil = 0;
-                }
-        if (sec >= 60) {
+        }
+        if (sec >= 60)
+        {
             min++;
             sec = 0;
+      
         }
 
         if (min >= 60)
@@ -92,6 +97,14 @@ public class objekti : MonoBehaviour {
         }
         text.text = $"{h}: {min} : {sec}";
 
+        switch (min) {
+            case 0:zvaigznesSkaits = 2;break;
+            case 1: zvaigznesSkaits = 1; break;
+            case 2: zvaigznesSkaits = 0; break;
+        }
+        if (h > 0) {
+            zvaigznesSkaits = 0;
+        }
     }
 
     // Use this for initialization
@@ -136,22 +149,20 @@ public class objekti : MonoBehaviour {
             panel.SetActive(true);
             taimer.SetActive(true);
 
-            PareizuMasinuSkaits = 0;
-
-            /*
+           
             switch (zvaigznesSkaits)
             {
-                case 1:
+                case 0:
                     zvaigznes.GetComponent<Image>().sprite = atteluMasivs[0]; break;
 
-                case 2:
+                case 1:
                     zvaigznes.GetComponent<Image>().sprite = atteluMasivs[1]; break;
 
-                case 3:
+                case 2:
                     zvaigznes.GetComponent<Image>().sprite = atteluMasivs[2]; break;
 
             }
-            */
+            
 
         }
     }
