@@ -63,10 +63,42 @@ public class objekti : MonoBehaviour {
     public GameObject zvaigznes; // sprite ar zvaigznem
     public GameObject panel; // panel uz kuras paradas rezultats
     public GameObject pogaReset; // poga reset
+    public GameObject taimer;
     public int zvaigznesSkaits = 1; // cik zvaigznes vajadzes attelot
+
+    public float mil;
+    public int sec;
+    public int min;
+    public int h;
+    public Text text;
+
+    private void FixedUpdate() {
+        while (PareizuMasinuSkaits!=12) {
+            mil += 0.02f;
+        }
+        if (mil >= 1) {
+            sec++;
+            mil = 0;
+                }
+        if (sec >= 60) {
+            min++;
+            sec = 0;
+        }
+
+        if (min >= 60)
+        {
+            h++;
+            min = 0;
+        }
+        text.text = $"{h}: {min} : {sec}";
+
+    }
 
     // Use this for initialization
     void Start () {
+
+      
+
 		atkrKord = atkritumi.GetComponent<RectTransform>().localPosition;
         atraKord = atraPalidziba.GetComponent<RectTransform>().localPosition;
         bussKord = autobuss.GetComponent<RectTransform>().localPosition;
@@ -86,6 +118,7 @@ public class objekti : MonoBehaviour {
         zvaigznes.SetActive(false);
         pogaReset.SetActive(false);
         panel.SetActive(false);
+        taimer.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -98,10 +131,10 @@ public class objekti : MonoBehaviour {
     public void rezultats() {
         if (PareizuMasinuSkaits >= 12)
         { // ja visas 12 masinas pareizi novietotas, tad paradam laiku, zvaigznes, pogu RESET un panel(skaistumam)
-            zvaigznes.SetActive(true);
+            zvaigznes.SetActive(true); // paradas rezultati
             pogaReset.SetActive(true);
             panel.SetActive(true);
-            //laiks.SetActive(true);
+            taimer.SetActive(true);
 
             PareizuMasinuSkaits = 0;
 
@@ -126,4 +159,8 @@ public class objekti : MonoBehaviour {
     public void pogaResetDarbiba() {
         SceneManager.LoadScene("Sakums", LoadSceneMode.Single);
     }
+
+    
+
+
 }
